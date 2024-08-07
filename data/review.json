@@ -1,0 +1,162 @@
+[
+    {
+        "name": "Hotel Merdeka",
+        "rate": 1200000,
+        "address": "Jl. Merdeka No. 1, Jakarta",
+        "review": "Pelayanan yang sangat memuaskan dengan fasilitas lengkap.",
+        "authorId": 1,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722919617/jnebe0ydduvbu4kgtsdl.jpg"
+    },
+    {
+        "name": "Hotel Nusantara",
+        "rate": 850000,
+        "address": "Jl. Nusantara No. 20, Bandung",
+        "review": "Lokasi strategis dan harga terjangkau.",
+        "authorId": 2,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722919678/uuoovsf5zgogd2b3oc6r.jpg"
+    },
+    {
+        "name": "Hotel Pelangi",
+        "rate": 950000,
+        "address": "Jl. Pelangi No. 15, Surabaya",
+        "review": "Kamar bersih dan nyaman, sarapan enak.",
+        "authorId": 3,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722919725/qitinaiyhnthch42gcpx.jpg"
+    },
+    {
+        "name": "Hotel Bintang",
+        "rate": 1100000,
+        "address": "Jl. Bintang No. 10, Bali",
+        "review": "Pemandangan indah dan pelayanan ramah.",
+        "authorId": 4,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722919845/pc7aarzdtlba2stx3pjq.jpg"
+    },
+    {
+        "name": "Hotel Sejahtera",
+        "rate": 700000,
+        "address": "Jl. Sejahtera No. 5, Yogyakarta",
+        "review": "Harga ekonomis dan fasilitas memadai.",
+        "authorId": 5,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722919894/u6ss6llvficdrn5xecih.jpg"
+    },
+    {
+        "name": "Hotel Lestari",
+        "rate": 1000000,
+        "address": "Jl. Lestari No. 8, Semarang",
+        "review": "Kamar luas dan pelayanan cepat.",
+        "authorId": 1,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722919929/ps2ubrjpisp40tvcjiey.jpg"
+    },
+    {
+        "name": "Hotel Mewah",
+        "rate": 1500000,
+        "address": "Jl. Mewah No. 25, Medan",
+        "review": "Fasilitas mewah dan lengkap, sangat direkomendasikan.",
+        "authorId": 2,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722919966/hhfioqkskotxhzmr5wk1.jpg"
+    },
+    {
+        "name": "Hotel Harmoni",
+        "rate": 800000,
+        "address": "Jl. Harmoni No. 18, Palembang",
+        "review": "Tempat yang nyaman dan tenang.",
+        "authorId": 3,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722920002/xyctkgh4muy6zwoky70d.jpg"
+    },
+    {
+        "name": "Hotel Indah",
+        "rate": 1300000,
+        "address": "Jl. Indah No. 12, Malang",
+        "review": "Desain interior yang elegan dan nyaman.",
+        "authorId": 4,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722920036/mvfzcvx2pdbj97qyoo4j.jpg"
+    },
+    {
+        "name": "Hotel Sederhana",
+        "rate": 600000,
+        "address": "Jl. Sederhana No. 7, Solo",
+        "review": "Harga terjangkau dengan pelayanan yang baik.",
+        "authorId": 5,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722920066/lqek1orga8ckfpv2pgrq.jpg"
+    },
+    {
+        "name": "Hotel Utama",
+        "rate": 1400000,
+        "address": "Jl. Utama No. 9, Makassar",
+        "review": "Pelayanan prima dan fasilitas yang sangat baik.",
+        "authorId": 1,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722920088/otukwfy4j8ef00wluzxz.jpg"
+    },
+    {
+        "name": "Hotel Damai",
+        "rate": 950000,
+        "address": "Jl. Damai No. 14, Padang",
+        "review": "Lokasi strategis dan suasana tenang.",
+        "authorId": 2,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722920116/dydn0xg6wqfjbv0cxmaw.jpg"
+    },
+    {
+        "name": "Hotel Asri",
+        "rate": 1050000,
+        "address": "Jl. Asri No. 11, Balikpapan",
+        "review": "Lingkungan bersih dan pelayanan ramah.",
+        "authorId": 3,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722920139/navupqouud22airju4sc.jpg"
+    },
+    {
+        "name": "Hotel Ceria",
+        "rate": 750000,
+        "address": "Jl. Ceria No. 16, Pekanbaru",
+        "review": "Harga ekonomis dengan fasilitas memadai.",
+        "authorId": 4,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722920160/iqdltn3qtyhcrv3x6kpf.jpg"
+    },
+    {
+        "name": "Hotel Aman",
+        "rate": 1200000,
+        "address": "Jl. Aman No. 22, Manado",
+        "review": "Fasilitas keamanan yang sangat baik.",
+        "authorId": 5,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722920184/lt7pzx6afea0tqym3js1.jpg"
+    },
+    {
+        "name": "Hotel Segar",
+        "rate": 900000,
+        "address": "Jl. Segar No. 6, Pontianak",
+        "review": "Pelayanan ramah dan makanan enak.",
+        "authorId": 1,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722920204/lczijoskp5nl99s8z7ar.jpg"
+    },
+    {
+        "name": "Hotel Bahagia",
+        "rate": 1150000,
+        "address": "Jl. Bahagia No. 13, Denpasar",
+        "review": "Tempat yang nyaman untuk bersantai.",
+        "authorId": 2,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722920221/tuurtgtcklb4dcvpxxt0.jpg"
+    },
+    {
+        "name": "Hotel Mega",
+        "rate": 950000,
+        "address": "Jl. Mega No. 17, Samarinda",
+        "review": "Kamar bersih dan lokasi strategis.",
+        "authorId": 3,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722920305/p6rmx8leojjppcyjiqna.jpg"
+    },
+    {
+        "name": "Hotel Prima",
+        "rate": 1100000,
+        "address": "Jl. Prima No. 19, Ternate",
+        "review": "Pelayanan prima dan fasilitas lengkap.",
+        "authorId": 4,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722920323/vt8dolld97psqiu0rprg.jpg"
+    },
+    {
+        "name": "Hotel Elok",
+        "rate": 850000,
+        "address": "Jl. Elok No. 21, Ambon",
+        "review": "Harga terjangkau dengan fasilitas memadai.",
+        "authorId": 5,
+        "image": "http://res.cloudinary.com/dcisb7ayn/image/upload/v1722920344/l0pugne7n6c2wgoy2a0f.jpg"
+    }
+]

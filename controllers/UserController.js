@@ -1,9 +1,45 @@
 const { comparePassword } = require("../helpers/bcrypt");
 const { token } = require("../helpers/jwt");
 const { Author } = require("../models");
+const {OAuth2Client} = require('google-auth-library');
 
 
 class UserController {
+  static async googleLogin(req, res, next) {
+    try {
+        const { token } = req.headers
+
+        const client = new OAuth2Client();
+
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: process.env.GOOGLE_CLIENT_ID,
+        });
+
+        const payload = ticket.getPayload();
+
+        const [user, created] = await Author.findOrCreate({
+            where: {
+                username: payload.email
+            },
+            defaults: {
+                username: payload.email,
+                password: "sebuah_rahasia"
+            },
+            hooks: false
+        })
+
+        const access_token = createToken({
+            id: user.id,
+            username: user.username,
+        })
+
+        res.status(200).json({ access_token })
+    } catch (err) {
+        console.log(err);
+        next(err)
+    }
+}
   static async addUser(req, res, next) {
     try {
       // res.send("test")

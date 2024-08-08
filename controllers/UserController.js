@@ -1,8 +1,9 @@
+const { UPSERT } = require("sequelize/lib/query-types");
 const { comparePassword } = require("../helpers/bcrypt");
-const { token } = require("../helpers/jwt");
+const { signToken } = require("../helpers/jwt");
 const { Author } = require("../models");
 const {OAuth2Client} = require('google-auth-library');
-
+const { hash } = require("../helpers/bcrypt");
 
 class UserController {
   static async googleLogin(req, res, next) {
@@ -18,21 +19,29 @@ class UserController {
 
         const payload = ticket.getPayload();
 
+        console.log(payload,"yuuhuuuuu menyaalaaaa");
+        
+
         const [user, created] = await Author.findOrCreate({
             where: {
-                username: payload.email
+                email: payload.email
             },
             defaults: {
-                username: payload.email,
-                password: "sebuah_rahasia"
+                name: payload.name,
+                email: payload.email,
+                password: hash("sebuah_rahasia")
             },
             hooks: false
         })
 
-        const access_token = createToken({
-            id: user.id,
-            username: user.username,
-        })
+        const iniload = {
+          id: user.id,
+          email: user.email,
+        };
+
+        console.log(iniload)
+
+        const access_token = signToken(iniload)
 
         res.status(200).json({ access_token })
     } catch (err) {
@@ -81,7 +90,7 @@ class UserController {
         email: login.email,
         role: login.role,
       };
-      const access_token = token(payload);
+      const access_token = signToken(payload);
 
       res.status(200).json({
         access_token,

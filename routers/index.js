@@ -11,6 +11,7 @@ const errorHandler = require("../middleware/errorHandler");
 
 router.post("/register", UserController.addUser);
 router.post("/login", UserController.loginUser);
+router.post("/google-login", UserController.googleLogin)
 
 
 router.use(authentication);

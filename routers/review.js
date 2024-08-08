@@ -6,11 +6,12 @@ const router = express.Router()
 
 
 router.get("/", ReviewController.readReview);
+router.get("/user", ReviewController.readReviewUser);
 
 router.post("/", ReviewController.addReview);
+router.post("/gemini", ReviewController.gemini);
 router.get("/:id", ReviewController.reviewDetail);
 router.delete("/:id", reviewAuthorization, ReviewController.deleteReview);
 router.put("/:id", reviewAuthorization, ReviewController.editReview);
-router.post("/gemini", ReviewController.gemini);
 
 module.exports = router;

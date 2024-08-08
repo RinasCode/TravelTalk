@@ -4,7 +4,6 @@ const { v2: cloudinary } = require("cloudinary");
 const multer = require("multer");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-
 // Konfigurasi Multer untuk menangani upload file
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage }).single("image");
@@ -15,8 +14,31 @@ cloudinary.config({
   api_secret: "GjyyD6fm9tLauJNOcKz0CN-yVmY",
 });
 
-
 class ReviewController {
+  static async readReviewUser(req, res, next) {
+    try {
+        // Pastikan loginInfo ada
+        const { userId } = req.loginInfo;
+        if (!userId) throw { name: "Unauthorized" };
+
+        // Cari semua review yang dimiliki oleh user yang sedang login
+        const reviewed = await Review.findAll({
+            where: {
+                authorId: userId
+            },
+            include: [Author] // Menyertakan informasi Author jika diperlukan
+        });
+
+        res.status(200).json({
+            message: "Success Read User Reviews",
+            reviewed,
+        });
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+}
+
   static async readReview(req, res, next) {
     try {
       const reviewed = await Review.findAll();
@@ -35,18 +57,15 @@ class ReviewController {
       try {
         if (err) throw err;
 
+        // Pastikan loginInfo ada
         const { userId } = req.loginInfo;
         if (!userId) throw { name: "Unauthorized" };
 
-        const { name, rate, address, review, authorId } = req.body;
-
+        const { name, rate, address, review } = req.body; // Tidak memerlukan authorId dari req.body
         let imageUrl = null;
 
-        // console.log(req.file);
-
-        // Jika ada file yang di-upload
+        // Upload image jika ada
         if (req.file) {
-          // Fungsi Promise untuk menangani upload stream ke Cloudinary
           const streamUpload = (buffer) => {
             return new Promise((resolve, reject) => {
               const stream = cloudinary.uploader.upload_stream(
@@ -64,19 +83,17 @@ class ReviewController {
           };
 
           const result = await streamUpload(req.file.buffer);
-
-          console.log('Cloudinary upload result:', result);
-
-          imageUrl = result.secure_url; // URL dari Cloudinary
+          imageUrl = result.secure_url;
         }
 
+        // Buat review
         const reviewed = await Review.create({
           name,
           rate,
           address,
           review,
-          authorId,
-          image: imageUrl, // Menyimpan URL gambar di database
+          authorId: userId, // Gunakan userId dari req.loginInfo
+          image: imageUrl,
         });
 
         res.status(201).json({
@@ -135,19 +152,19 @@ class ReviewController {
     upload(req, res, async function (err) {
       try {
         if (err) throw err;
-  
+
         const { id } = req.params;
-  
+
         // Cari review berdasarkan ID
         const reviewed = await Review.findByPk(id);
-  
+
         if (!reviewed) throw { name: "Review Not Found", id };
-  
+
         // Ambil data yang dikirim dari req.body
         const { name, rate, address, review, authorId } = req.body;
-  
+
         let imageUrl = reviewed.image; // Gunakan URL gambar yang sudah ada
-  
+
         // Jika ada file yang di-upload, upload ke Cloudinary
         if (req.file) {
           const streamUpload = (buffer) => {
@@ -165,11 +182,11 @@ class ReviewController {
               stream.end(buffer);
             });
           };
-  
+
           const result = await streamUpload(req.file.buffer);
           imageUrl = result.secure_url; // URL dari Cloudinary yang baru
         }
-  
+
         // Update data review dengan data baru, jika tidak ada gunakan data lama
         await Review.update(
           {
@@ -186,7 +203,7 @@ class ReviewController {
             },
           }
         );
-  
+
         res.status(200).json({
           message: `Success Update Review with id ${id}`,
         });
@@ -196,39 +213,36 @@ class ReviewController {
       }
     });
   }
-  
+
   static async gemini(req, res, next) {
     try {
       const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-      
+
       const { harga, lokasi } = req.body;
-  
+
       const prompt = `
       Saya ingin menginap di hotel dengan harga sekitar ${harga} rupiah di ${lokasi}.
       Bisakah Anda merekomendasikan beberapa hotel dengan deskripsi singkat?
       Tolong urutkan hotel-hotel tersebut dengan angka 1, 2, 3, dan seterusnya. Jangan gunakan tanda bintang (*) atau garis miring baru. Sebutkan hanya nama hotel, harga, dan deskripsi dalam format teks biasa.
     `;
-    
-  
+
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const text = response.text().trim();
-  
+
       console.log("Raw AI Output:", text);
-  
+
       // Mengirimkan seluruh teks AI sebagai respons
       res.status(200).json({
         message: "Success",
-        data: text
+        data: text,
       });
     } catch (error) {
       console.log(error);
       next(error);
     }
   }
-  
-  
 }
 
 module.exports = ReviewController;

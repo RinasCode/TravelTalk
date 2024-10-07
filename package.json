@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles --forceExit --verbose"
+    "test": "jest --detectOpenHandles --forceExit --verbose",
+    "start": "node ./bin/www"
   },
   "keywords": [],
   "author": "",

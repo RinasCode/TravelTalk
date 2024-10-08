@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --detectOpenHandles --forceExit --verbose",
-    "start": "node ./bin/www"
+     "start": "node ./bin/www"
   },
   "keywords": [],
   "author": "",
